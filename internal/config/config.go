@@ -18,8 +18,8 @@ func GetConfigPath() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	remainingPath := "workspace/github.com/Swapnilgupta8585/blog_aggregator/"
-	configPath := filepath.Join(homeDir, remainingPath, configFileName)
+	// remainingPath := "workspace/github.com/Swapnilgupta8585/blog_aggregator/"
+	configPath := filepath.Join(homeDir, configFileName)
 	return configPath, nil
 
 }
