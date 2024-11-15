@@ -1,11 +1,15 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	"log"
 	"os"
 
 	"github.com/Swapnilgupta8585/blog_aggregator/internal/config"
+	"github.com/Swapnilgupta8585/blog_aggregator/internal/database"
+
+	_ "github.com/lib/pq"
 )
 
 func main() {
@@ -13,13 +17,23 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	cfg.DbURL = "postgres://postgres:postgres@localhost:5432/gator"
+	db, err := sql.Open("postgres", cfg.DbURL)
+	if err != nil {
+		fmt.Printf("can not open a database connection")
+		os.Exit(1)
+	}
+
+	dbQueries := database.New(db)
 	st := &state{
 		config: cfg,
+		db:     dbQueries,
 	}
 	commandsInstance := &commands{
 		mapToHandlers: make(map[string]func(*state, command) error),
 	}
 	commandsInstance.register("login", handlerLogin)
+	commandsInstance.register("register", handlerRegister)
 	argument := os.Args
 	if len(argument) < 2 {
 		fmt.Printf("not enough argumnets provided\n")
