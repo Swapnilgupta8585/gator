@@ -34,6 +34,7 @@ func main() {
 	}
 	commandsInstance.register("login", handlerLogin)
 	commandsInstance.register("register", handlerRegister)
+	commandsInstance.register("reset", handlerReset)
 	argument := os.Args
 	if len(argument) < 2 {
 		fmt.Printf("not enough argumnets provided\n")
