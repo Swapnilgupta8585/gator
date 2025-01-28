@@ -9,7 +9,7 @@ import (
 // login handler function
 func handlerLogin(st *state, cmd command) error {
 	// Return an error if no arguments are provided
-	if len(cmd.Args) == 0 {
+	if len(cmd.Args) != 1 {
 		return fmt.Errorf("usage: %s <name>", cmd.Name)
 	}
 
@@ -23,12 +23,12 @@ func handlerLogin(st *state, cmd command) error {
 	}
 
 	// If user exists in the database, update the config file
-	err = st.config.SetUser(name)
+	err = st.cfg.SetUser(name)
 	if err != nil {
 		return err
 	}
 	// Update the current user in the state config
-	st.config.CurrentUserName = name
+	st.cfg.CurrentUserName = name
 	fmt.Printf("%s has been set as the current user\n", name)
 	return nil
 }
