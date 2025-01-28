@@ -6,23 +6,29 @@ import (
 	"os"
 )
 
-func handlerLogin(s *state, cmd command) error {
-	if len(cmd.args) == 0 {
-		return fmt.Errorf("the login handler expects a single argument, the username")
+// login handler function
+func handlerLogin(st *state, cmd command) error {
+	// if length of cmd.Args method if zero return error
+	if len(cmd.Args) == 0 {
+		return fmt.Errorf("usage: %s <name>", cmd.Name)
 	}
 
-	name := cmd.args[0]
+	// Get the Argument for the login function (name of the user)
+	name := cmd.Args[0]
 	ctx := context.Background()
-	_, err := s.db.GetUser(ctx, name)
+	_, err := st.db.GetUser(ctx, name)
 	if err != nil {
 		fmt.Printf("%s doesn't exist\n", name)
 		os.Exit(1)
 	}
-	err = s.config.SetUser(name)
+
+	// if user exists in Database, Set the user in the config file 
+	err = st.config.SetUser(name)
 	if err != nil {
 		return err
 	}
-	s.config.CurrentUserName = name
-	fmt.Printf("%s has been set as the Current User\n", cmd.args[0])
+	// Set the user in the Config struct in the state struct
+	st.config.CurrentUserName = name
+	fmt.Printf("%s has been set as the Current User\n", cmd.Args[0])
 	return nil
 }
