@@ -4,8 +4,8 @@ import "fmt"
 
 // command struct stores the command name and its arguments
 type command struct {
-	name string
-	args []string
+	Name string
+	Args []string
 }
 
 // commands struct maintains a map linking command names to handler functions
@@ -20,10 +20,10 @@ func (c *commands) register(name string, f func(*state, command) error) {
 
 // run executes the handler function if the command exists
 func (c *commands) run(st *state, cmd command) error {
-	handlerFunc, exists := c.registeredCommands[cmd.name]
+	handlerFunc, exists := c.registeredCommands[cmd.Name]
 	// Return an error if the command is not registered
 	if !exists {
-		return fmt.Errorf("unknown command: %s", cmd.name)
+		return fmt.Errorf("unknown command: %s", cmd.Name)
 	}
 	// Execute the handler function if it exists
 	return handlerFunc(st, cmd)
