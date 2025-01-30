@@ -27,8 +27,7 @@ func handlerLogin(st *state, cmd command) error {
 	if err != nil {
 		return err
 	}
-	// Update the current user in the state config
-	st.cfg.CurrentUserName = name
+	
 	fmt.Printf("%s has been set as the current user\n", name)
 	return nil
 }

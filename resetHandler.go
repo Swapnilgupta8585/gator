@@ -6,19 +6,19 @@ import (
 	"os"
 )
 
-func handlerReset(s *state, cmd command) error {
+func handlerReset(st *state, cmd command) error {
 	ctx := context.Background()
-	err := s.db.DeleteAllUsers(ctx)
+	err := st.db.DeleteAllUsers(ctx)
 	if err != nil {
 		fmt.Printf("Error: %v\n", err)
 		os.Exit(1)
 	}
-	err = s.config.SetUser("")
+	err = st.cfg.SetUser("")
 	if err != nil {
 		fmt.Printf("Error: %v\n", err)
 		os.Exit(1)
 	}
-	s.config.CurrentUserName = ""
+
 	fmt.Print("reset successful")
 	return nil
 }
