@@ -32,7 +32,9 @@ func main() {
 		fmt.Println("Cannot open a database connection")
 		os.Exit(1)
 	}
+	defer db.Close()
 	// Initialize database queries
+
 	dbQueries := database.New(db)
 
 	// Create a pointer instance of the state struct
@@ -42,7 +44,7 @@ func main() {
 	}
 
 	// Create an instance of the commands struct
-	cmds := &commands{
+	cmds := commands{
 		registeredCommands: make(map[string]func(*state, command) error),
 	}
 
