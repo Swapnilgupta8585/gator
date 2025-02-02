@@ -54,6 +54,7 @@ func main() {
 	cmds.register("reset", handlerReset)
 	cmds.register("users", handlerUsers)
 	cmds.register("agg", handleAgg)
+	cmds.register("addfeed", handleAddFeed)
 
 	// Ensure at least one command and one argument is provided
 	if len(os.Args) < 2 {
