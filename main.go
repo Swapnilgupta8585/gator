@@ -33,8 +33,8 @@ func main() {
 		os.Exit(1)
 	}
 	defer db.Close()
-	// Initialize database queries
 
+	// Initialize database queries
 	dbQueries := database.New(db)
 
 	// Create a pointer instance of the state struct
@@ -56,6 +56,8 @@ func main() {
 	cmds.register("agg", handleAgg)
 	cmds.register("addfeed", handleAddFeed)
 	cmds.register("feeds", handleFeed)
+	cmds.register("follow", handleFollow)
+	cmds.register("following", handleFollowing)
 
 	// Ensure at least one command and one argument is provided
 	if len(os.Args) < 2 {
