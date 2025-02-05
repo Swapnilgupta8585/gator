@@ -11,19 +11,24 @@ import (
 	"github.com/google/uuid"
 )
 
+// handlerRegister handles user registration.
 func handlerRegister(st *state, cmd command) error {
+	// Ensure a name is provided; otherwise, return an error.
 	if len(cmd.Args) != 1 {
 		return fmt.Errorf("usage: %s <name>", cmd.Name)
 	}
+
+	// Extract the name from the command arguments.
 	name := cmd.Args[0]
-	
-	//check if user exits
+
+	// Check if the user already exists.
 	ctx := context.Background()
 	if _, err := st.db.GetUser(ctx, name); err == nil {
 		fmt.Printf("%s already exists\n", name)
 		os.Exit(1)
 	}
 
+	// Prepare user details for creation.
 	userParams := database.CreateUserParams{
 		ID:        uuid.New(),
 		CreatedAt: time.Now(),
@@ -31,15 +36,18 @@ func handlerRegister(st *state, cmd command) error {
 		Name:      name,
 	}
 
-	_, err := st.db.CreateUser(ctx, userParams)
-	if err != nil {
+	// Create the user in the database.
+	if _, err := st.db.CreateUser(ctx, userParams); err != nil {
 		return err
 	}
 
-	err = st.cfg.SetUser(name)
-	if err != nil {
+	// Set the newly created user as the current user.
+	if err := st.cfg.SetUser(name); err != nil {
 		return err
 	}
-	fmt.Printf("%s is created in the database successfully\n", name)
+
+	// Confirm successful registration.
+	fmt.Printf("User %s registered successfully.\n", name)
 	return nil
 }
+
