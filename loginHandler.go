@@ -6,29 +6,33 @@ import (
 	"os"
 )
 
-// login handler function
+// handlerLogin processes the login command.
 func handlerLogin(st *state, cmd command) error {
-	// Return an error if no arguments are provided
+	// Ensure a username is provided.
 	if len(cmd.Args) != 1 {
 		return fmt.Errorf("usage: %s <name>", cmd.Name)
 	}
 
-	// Get the username from the command arguments
+	// Extract the username from the command arguments.
 	name := cmd.Args[0]
+
+	// Create a new context.
 	ctx := context.Background()
-	_, err := st.db.GetUser(ctx, name)
-	if err != nil {
+
+	// Check if the user exists in the database.
+	if _, err := st.db.GetUser(ctx, name); err != nil {
 		fmt.Printf("%s doesn't exist\n", name)
 		os.Exit(1)
 	}
 
-	// If user exists in the database, update the config file
-	err = st.cfg.SetUser(name)
-	if err != nil {
+	// Set the existing user as the current user in the config.
+	if err := st.cfg.SetUser(name); err != nil {
 		return err
 	}
-	
-	fmt.Printf("%s has been set as the current user\n", name)
+
+	// Confirm successful login.
+	fmt.Printf("%s is now the active user.\n", name)
 	return nil
 }
+
 
