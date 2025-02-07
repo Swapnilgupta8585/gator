@@ -18,7 +18,6 @@ WITH GetFeedFollow AS (
     FROM feed_follows
     WHERE feed_follows.user_id=$1
 )
-
 SELECT getfeedfollow.id, getfeedfollow.created_at, getfeedfollow.updated_at, getfeedfollow.user_id, getfeedfollow.feed_id, users.name AS user_name, feeds.name AS feed_name
 FROM GetFeedFollow
 INNER JOIN users

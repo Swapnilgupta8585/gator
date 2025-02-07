@@ -13,7 +13,6 @@ import (
 )
 
 const createFeedFollow = `-- name: CreateFeedFollow :many
-
 WITH inserted_feed_follow AS (
     INSERT INTO feed_follows(
     id,
