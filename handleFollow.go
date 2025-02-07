@@ -10,14 +10,14 @@ import (
 )
 
 // handleFollow processes the "follow" command, allowing users to follow a feed by its URL.
-func handleFollow(st *state, cmd command) error {
+func handleFollow(st *state, cmd command, user database.User) error {
 	// Ensure the correct number of arguments are provided.
 	if len(cmd.Args) != 1 {
 		return fmt.Errorf("ERROR | usage: follow <url>")
 	}
 
-	// Retrieve user ID from the database using the current username.
-	user_id, err := st.db.GetId(context.Background(), st.cfg.CurrentUserName)
+	// Retrieve user ID from the database using the username.
+	user_id, err := st.db.GetId(context.Background(), user.Name)
 	if err != nil {
 		return err
 	}

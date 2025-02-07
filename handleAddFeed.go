@@ -10,14 +10,14 @@ import (
 )
 
 // handleAddFeed handles the "addfeed" command to add a feed to the database and follow it.
-func handleAddFeed(st *state, cmd command) error {
+func handleAddFeed(st *state, cmd command, user database.User) error {
 	// Ensure exactly two arguments are provided: feed name and feed URL.
 	if len(cmd.Args) < 2 {
 		return fmt.Errorf("usage: addfeed <name> <url>")
 	}
 
-	// Retrieve user ID from the database using the current username.
-	user_id, err := st.db.GetId(context.Background(), st.cfg.CurrentUserName)
+	// Retrieve user ID from the database using the username.
+	user_id, err := st.db.GetId(context.Background(), user.Name)
 	if err != nil {
 		return err // Return error if user can't be found.
 	}

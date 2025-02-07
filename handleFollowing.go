@@ -3,12 +3,14 @@ package main
 import (
 	"context"
 	"fmt"
+
+	"github.com/Swapnilgupta8585/blog_aggregator/internal/database"
 )
 
 // handleFollowing handles the "following" command and displays all feeds the user is following.
-func handleFollowing(st *state, cmd command) error {
+func handleFollowing(st *state, cmd command, user database.User) error {
 	// Retrieve the current user's ID from the database using their username.
-	currentUserId, err := st.db.GetId(context.Background(), st.cfg.CurrentUserName)
+	currentUserId, err := st.db.GetId(context.Background(), user.Name)
 	if err != nil {
 		return err 
 	}
