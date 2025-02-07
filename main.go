@@ -54,10 +54,13 @@ func main() {
 	cmds.register("reset", handlerReset)
 	cmds.register("users", handlerUsers)
 	cmds.register("agg", handleAgg)
-	cmds.register("addfeed", handleAddFeed)
-	cmds.register("feeds", handleFeed)
-	cmds.register("follow", handleFollow)
-	cmds.register("following", handleFollowing)
+	cmds.register("feeds",  handleFeed)
+
+	// Register commands that can only be executed by a logged-in user.  
+	// The middleware checks if a user exists in the database before allowing access to these commands.  
+	cmds.register("addfeed", middlewareLoggedIn(handleAddFeed))
+	cmds.register("follow",  middlewareLoggedIn(handleFollow))
+	cmds.register("following",  middlewareLoggedIn(handleFollowing))
 
 	// Ensure at least one command and one argument is provided
 	if len(os.Args) < 2 {
