@@ -1,19 +1,31 @@
 package main
 
 import (
-	"context"
 	"fmt"
+	"time"
 )
 
-// handleAgg processes the "agg" command by fetching and displaying a feed.
+// handleAgg executes the "agg" command by periodically fetching and displaying feed data.
 func handleAgg(st *state, cmd command) error {
-	// Fetch the RSS feed from the given URL.
-	feed, err := fetchFeed(context.Background(), "https://www.wagslane.dev/index.xml")
-	if err != nil {
-		return fmt.Errorf("couldn't fetch feed: %w", err)
+	// Ensure the correct number of arguments are provided.
+	if len(cmd.Args) != 1 {
+		return fmt.Errorf("usage: agg <time_between_reqs> like 1s, 1m, 1h etc")
 	}
 
-	// %+v formats the struct with field names and values.
-	fmt.Printf("Feed: %+v\n", feed)
-	return nil
+	// Parse the provided duration string into a time.Duration value.
+	timeBetweenRequests, err := time.ParseDuration(cmd.Args[0])
+	if err != nil {
+		return nil
+	}
+
+	fmt.Printf("Collecting feeds every %s\n", cmd.Args[0])
+
+	// Create a ticker that triggers at the specified interval.
+	ticker := time.NewTicker(timeBetweenRequests)
+
+	// Continuously scrape feeds each time the ticker signals.
+	for ; ; <-ticker.C {
+		scrapeFeeds(st)
+	}
+	
 }
