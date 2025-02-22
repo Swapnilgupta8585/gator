@@ -26,7 +26,7 @@ go install github.com/Swapnilgupta8585/blog_aggregator@latest
 Make sure your Go binary directory is in your `PATH` so you can run `gator` globally:
 
 ```bash
-export PATH=$PATH:$HOME/go/bin
+export PATH=$(go env GOPATH)/bin:$PATH
 ```
 Add this to your `~/.bashrc` or `~/.zshrc` to make it permanent.
 
