@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/Swapnilgupta8585/blog_aggregator/internal/database"
+	"github.com/Swapnilgupta8585/gator/internal/database"
 )
 
 

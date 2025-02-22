@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/Swapnilgupta8585/blog_aggregator/internal/database"
+	"github.com/Swapnilgupta8585/gator/internal/database"
 	"github.com/araddon/dateparse"
 	"github.com/google/uuid"
 	"github.com/lib/pq"

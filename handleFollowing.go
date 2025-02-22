@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/Swapnilgupta8585/blog_aggregator/internal/database"
+	"github.com/Swapnilgupta8585/gator/internal/database"
 )
 
 // handleFollowing handles the "following" command and displays all feeds the user is following.

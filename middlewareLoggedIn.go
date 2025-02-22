@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 
-	"github.com/Swapnilgupta8585/blog_aggregator/internal/database"
+	"github.com/Swapnilgupta8585/gator/internal/database"
 )
 
 // middlewareLoggedIn is a middleware that ensures a user is logged in before executing a handler function.
