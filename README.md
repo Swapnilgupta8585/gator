@@ -58,6 +58,7 @@ Run `gator <command>` to interact with the aggregator.
 | `gator browse`                         | Display posts from followed feeds (recent entries only) |
 | `gator agg <time>`                     | Periodically fetch feed data (see time formats below) |
 | `gator unfollow <url>`                 | Unfollow a feed by its URL |
+| `gator following`                      | See all the feeds you are followingI
 
 ### Time Format for Auto-Fetch
 When using the `agg` command, specify time intervals using these formats:
