@@ -85,11 +85,15 @@ gator addfeed "golang" "https://blog.golang.org/feed.atom"
 # Follow the feed
 gator follow "https://blog.golang.org/feed.atom"
 
-# Browse your posts
-gator browse
+# Start the aggregator to collect posts (required before browsing)
+gator agg 1m  # Fetches new posts every minute
 
-# Auto-fetch new posts every hour
-gator agg 1h
-
+# Browse your collected posts (run this in a separate terminal)
+gator browse  # Shows posts that have been collected
 ```
+
+### Important Note
+- The agg command must be running to collect posts
+- Run browse in a separate terminal while agg is running to view posts
+
 Enjoy using `gator` to simplify your blog reading experience! 
