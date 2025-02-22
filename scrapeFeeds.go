@@ -44,10 +44,10 @@ func scrapeFeeds(st *state) error {
 
 	// Loop through the RSS feed items and print their titles.
 	for _, post := range RssFeed.Channel.Item {
-		feed_id, err := st.db.GetFeedId(context.Background(), post.Link)
-		if err != nil {
-			return err
-		}
+		// feed_id, err := st.db.GetFeedId(context.Background(), post.Link)
+		// if err != nil {
+		// 	return err
+		// }
 
 		published_at, err := dateparse.ParseAny(post.PubDate)
 		if err != nil {
@@ -63,12 +63,10 @@ func scrapeFeeds(st *state) error {
 			Url:         post.Link,
 			Description: post.Description,
 			PublishedAt: published_at,
-			FeedID:      feed_id,
+			FeedID:      feed.ID,
 		}
 		_, err = st.db.CreatePost(context.Background(), params)
 		if err != nil {
-			_, err = st.db.CreatePost(context.Background(), params)
-			if err != nil {
 				// Check if it's a duplicate key error
 				if pqErr, ok := err.(*pq.Error); ok {
 					// 23505 is the PostgreSQL error code for unique_violation
@@ -84,7 +82,6 @@ func scrapeFeeds(st *state) error {
 			}
 		}
 
-	}
 	return nil
 
 }

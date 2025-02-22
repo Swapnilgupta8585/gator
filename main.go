@@ -66,7 +66,7 @@ func main() {
 
 	// Ensure at least one command and one argument is provided
 	if len(os.Args) < 2 {
-		log.Fatal("Usage: cli <command> [args...]")
+		log.Fatal("Usage: gator <command> [args...]")
 		return
 	}
 
