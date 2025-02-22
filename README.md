@@ -1,4 +1,4 @@
-# Blog Aggregator
+# gator
 
 A Go-based Blog Aggregator that collects, organizes, and serves blog posts from multiple sources. This project helps centralize various blogs into one place, making content consumption efficient and seamless.
 
@@ -19,7 +19,7 @@ Ensure you have the following installed:
 Run the following command to install the `gator` CLI tool:
 
 ```sh
-go install github.com/Swapnilgupta8585/blog_aggregator@latest
+go install github.com/Swapnilgupta8585/gator@latest
 ```
 
 ### Ensure `gator` is Accessible
@@ -71,7 +71,7 @@ Here's a quick walkthrough to set up and use `gator`:
 
 ```sh
 # Install gator
-go install github.com/Swapnilgupta8585/blog_aggregator@latest
+go install github.com/Swapnilgupta8585/gator@latest
 
 # Create a config file
 nano ~/.gatorconfig.json  # Or use echo command from above
