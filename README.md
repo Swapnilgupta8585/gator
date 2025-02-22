@@ -47,17 +47,17 @@ Run `gator <command>` to interact with the aggregator.
 
 ### Available Commands
 
-| Command                          | Description |
-|----------------------------------|-------------|
-| `gator <your_name>`              | Register as a new user(first time) |
-| `gator <your_name>`              | Login as a user |
-| `gator users`                    | List all users (highlighting the current user) |
-| `gator addfeed <name> <url>`     | Add a new feed |
-| `gator feeds`                    | List all available feeds |
-| `gator follow <url>`             | Follow a feed by its URL |
-| `gator browse`                   | Display posts from followed feeds (recent entries only) |
-| `gator agg <time>`               | Periodically fetch feed data (see time formats below) |
-| `gator unfollow <url>`           | Unfollow a feed by its URL |
+| Command                                | Description |
+|----------------------------------------|-------------|
+| `gator register <your_name>`           | Register as a new user(first time) |
+| `gator login <your_name>`              | Login as a user |
+| `gator users`                          | List all users (highlighting the current user) |
+| `gator addfeed <name> <url>`           | Add a new feed |
+| `gator feeds`                          | List all available feeds |
+| `gator follow <url>`                   | Follow a feed by its URL |
+| `gator browse`                         | Display posts from followed feeds (recent entries only) |
+| `gator agg <time>`                     | Periodically fetch feed data (see time formats below) |
+| `gator unfollow <url>`                 | Unfollow a feed by its URL |
 
 ### Time Format for Auto-Fetch
 When using the `agg` command, specify time intervals using these formats:
