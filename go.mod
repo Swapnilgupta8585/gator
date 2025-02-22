@@ -1,4 +1,4 @@
-module github.com/Swapnilgupta8585/blog_aggregator
+module github.com/Swapnilgupta8585/gator
 
 go 1.23.2
 
