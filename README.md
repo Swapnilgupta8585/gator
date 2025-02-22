@@ -77,7 +77,7 @@ go install github.com/Swapnilgupta8585/blog_aggregator@latest
 nano ~/.gatorconfig.json  # Or use echo command from above
 
 # Register a user
-gator Swapnil
+gator register Swapnil
 
 # Add an RSS feed (example)
 gator addfeed "golang" "https://blog.golang.org/feed.atom"
