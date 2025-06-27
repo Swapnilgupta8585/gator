@@ -35,7 +35,7 @@ Create a configuration file (`.gatorconfig.json`) in your home directory with th
 
 ```bash
 echo '{
-  "db_url": "postgres://postgres:postgres@localhost:5432/gator",
+  "db_url": "postgres://<user>:<password>@localhost:5432/gator",
   "current_user_name": ""
 }' > ~/.gatorconfig.json
 ```
